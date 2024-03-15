@@ -10,7 +10,7 @@ import (
 	"github.com/swaggest/jsonschema-go"
 )
 
-var Imports []string = []string{"time"}
+var Imports []string = []string{"time", "github.com/defenseunicorns/go-oscal/src/pkg/optional"}
 
 var PrimitiveAndCustomTypes map[string]string = map[string]string{
 	"string":    "string",
@@ -348,7 +348,6 @@ func lintFieldName(name string) string {
 			// All the common initialisms are ASCII,
 			// so we can replace the bytes exactly.
 			copy(runes[w:], []rune(u))
-
 		} else if strings.ToLower(word) == word {
 			// already all lowercase, and not the first word, so uppercase the first character.
 			runes[w] = unicode.ToUpper(runes[w])
@@ -363,7 +362,6 @@ func stringifyFirstChar(str string) string {
 	first := str[:1]
 
 	i, err := strconv.ParseInt(first, 10, 8)
-
 	if err != nil {
 		return str
 	}

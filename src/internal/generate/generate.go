@@ -199,6 +199,9 @@ func (c *GeneratorConfig) buildStructString(def jsonschema.Schema) (structString
 			return structString, err
 		}
 		propTags := buildTagString(c.tags, key, required[key])
+		if !required[key] {
+			propType = fmt.Sprintf("optional.Optional[%s]", propType)
+		}
 		structString += fmt.Sprintf("\t%s %s %s\n", propName, propType, propTags)
 	}
 	// Close the struct
